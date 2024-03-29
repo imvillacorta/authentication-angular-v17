@@ -1,0 +1,48 @@
+// @import "./../../../scss/theme/variables";
+
+:host {
+    img {
+        margin-bottom: 15px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &,
+        label,
+        input {
+            width: 100%;
+        }
+
+        label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--black);
+
+            svg {
+                width: 30px;
+            }
+
+            input {
+                height: 50px;
+                border: none;
+                font-size: 18px;
+
+                &::placeholder {
+                    color: var(--black);
+                }
+            }
+        }
+
+        .error {
+            margin: 5px 0 10px 0;
+
+            span {
+                font-size: 14px;
+            }
+        }
+    }
+}
