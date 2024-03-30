@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-authentication',
@@ -12,17 +13,30 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export default class AuthenticationComponent {
   #formBuilder = inject(FormBuilder);
+  #authentication = inject(AuthenticationService);
+
   public submitted: boolean = false;
+  public msgError!: string;
 
   public form = this.#formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
 
-  public onSubmit(){
+  public onSubmit() {
     this.submitted = true;
+    let obj = {
+      email: this.form.value.email,
+      password: this.form.value.password
+    }
 
-    console.log(this.form);
+    if (this.form.valid) {
+      this.#authentication.sign(obj)
+        .subscribe({
+          next: (res) => res,
+          error: (e) => (this.msgError = e),
+        })
+    }
   }
 
   get email() {

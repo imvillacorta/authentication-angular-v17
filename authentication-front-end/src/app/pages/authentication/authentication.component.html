@@ -54,13 +54,16 @@
         </div>
         }
 
-        <button class="btn-primary" 
-        [disabled]="form.invalid">Acessar</button>
+        <button class="btn-primary"
+                [disabled]="form.invalid">Acessar</button>
 
     </form>
 
+    @if (msgError) {
     <span class="msg-error">
-        Usuário e senha incorreta
+        {{msgError}}
     </span>
+    }
+
 
 </div>

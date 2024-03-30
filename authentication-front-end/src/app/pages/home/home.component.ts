@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,10 @@ import { Component } from '@angular/core';
 })
 export default class HomeComponent {
 
-  public logout(){
-    
+  #authentication = inject(AuthenticationService);
+
+  public logout() {
+    this.#authentication.logout();
   }
 
 }
