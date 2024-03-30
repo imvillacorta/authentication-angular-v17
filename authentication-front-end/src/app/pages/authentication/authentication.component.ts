@@ -13,7 +13,7 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 })
 export default class AuthenticationComponent {
   #formBuilder = inject(FormBuilder);
-  #authentication = inject(AuthenticationService);
+  #authenticationService = inject(AuthenticationService);
 
   public submitted: boolean = false;
   public msgError!: string;
@@ -31,7 +31,7 @@ export default class AuthenticationComponent {
     }
 
     if (this.form.valid) {
-      this.#authentication.sign(obj)
+      this.#authenticationService.sign(obj)
         .subscribe({
           next: (res) => res,
           error: (e) => (this.msgError = e),

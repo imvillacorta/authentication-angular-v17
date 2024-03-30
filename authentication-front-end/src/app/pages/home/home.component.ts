@@ -10,10 +10,10 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 })
 export default class HomeComponent {
 
-  #authentication = inject(AuthenticationService);
+  #authenticationService = inject(AuthenticationService);
 
   public logout() {
-    this.#authentication.logout();
+    this.#authenticationService.logout();
   }
 
 }
